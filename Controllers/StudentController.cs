@@ -9,6 +9,24 @@ namespace FindStructor.Controllers
 {
     public class StudentController : Controller
     {
+
+        private ApplicationDbContext _context;
+
+        public InstructorController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        public string GetCurrentUserId()
+        {
+            return _context.Users.Where(u => u.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Student
         public ActionResult Index()
         {
@@ -24,6 +42,13 @@ namespace FindStructor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaveStudentData(Student model) {
 
+            if (!ModelState.IsValid) { 
+                return Content("Issue with the data");
+            }
+            var studentDate = model;
+            studentDate.IdentityId = GetCurrentUserId();
+            _context.Students.Add(studentDate);
+            _context.SaveChanges();
             return Content("Data Saved");
 
         }

@@ -23,6 +23,11 @@ namespace FindStructor.Controllers
             _context.Dispose();
         }
 
+        public string GetCurrentUserId()
+        {
+            return _context.Users.Where(u => u.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
+        }
+
         // GET: Instructor
         public ActionResult Index()
         {
@@ -32,7 +37,7 @@ namespace FindStructor.Controllers
         public ActionResult AccountSetup()
         {
             var grades = _context.Grade.ToList();
-            var viewModel = new DrivingInstructorViewModel {Grades = grades };
+            var viewModel = new DrivingInstructorViewModel { Grades = grades };
 
             return View(viewModel);
         }
@@ -41,6 +46,23 @@ namespace FindStructor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaveInstructorData(DrivingInstructor model)
         {
+            if (!ModelState.IsValid)
+            {
+                return Content("Issue with the data");
+            }
+            var instructorData = model;
+            instructorData.IdentityId = GetCurrentUserId();
+            var instructorInDb = new DrivingInstructor
+            {
+                IdentityId = GetCurrentUserId(),
+                FirstName = instructorData.FirstName,
+                LastName = instructorData.LastName,
+                RegistrationDate = instructorData.RegistrationDate,
+                PricePerLesson = instructorData.PricePerLesson,
+                GradeId = instructorData.GradeId,
+            };
+            _context.DrivingInstructors.Add(instructorInDb);
+            _context.SaveChanges();
             return Content("Data Saved for Driving Instructor");
         }
     }
