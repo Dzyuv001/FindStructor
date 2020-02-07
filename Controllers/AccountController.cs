@@ -183,6 +183,15 @@ namespace FindStructor.Controllers
                     await roleManager.CreateAsync(new IdentityRole(userRoleString));
                     await UserManager.AddToRoleAsync(user.Id, userRoleString);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    switch (model.AccountType)
+                    {
+                        case 1: return RedirectToAction("Index", "Home");
+                        case 2: return RedirectToAction("AccountSetup", "Instructor");
+                        case 3: return RedirectToAction("AccountSetup", "Student");
+
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

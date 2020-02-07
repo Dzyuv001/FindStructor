@@ -1,0 +1,72 @@
+﻿@model FindStructor.ViewModel.DrivingInstructorViewModel
+@{
+    ViewBag.Title = "AccountSetup";
+}
+
+<h2>Driving Instructor Account Setup</h2>
+
+
+
+@using (Html.BeginForm("SaveInstructorData", "Instructor", FormMethod.Post, new { id = "DrivingInstructorRegistration" }))
+{
+    @Html.ValidationSummary(true, "Fix the following error")
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.RegistrationDate)
+            @Html.TextBoxFor(m => m.RegistrationDate, "{0:dd/mm/yyyy}", new { @class = "form-control datepicker", id = "txtRegistrationDate", placeholder = "dd/mm/yyyy" })
+            @Html.ValidationMessageFor(m => m.RegistrationDate)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.PricePerLesson)
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">£</span>
+                </div>
+                @Html.TextBoxFor(m => m.PricePerLesson, new { @class = "form-control", type = "number", min = "0.01", max = "9999", step = "0.01" })
+            </div>
+            @Html.ValidationMessageFor(m => m.PricePerLesson)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.GradeId)
+            @Html.DropDownListFor(m => m.GradeId, new SelectList(Model.Grades, "Id", "Name"), "Select Grade", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.GradeId)
+        </div>
+
+        @*@Html.HiddenFor(m => m.Id)*@
+        @Html.AntiForgeryToken()
+    </div>
+    <button id="submitDrivingInstructor" type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(document).ready(function () {
+            $(function () {
+                $.validator.methods.date = function (value, element) {
+                    return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+                }
+                $('.datepicker').datepicker({
+                    format: "dd/mm/yyyy",
+                    startDate: "01/01/1940",
+                    endDate: "today",
+                    autoclose: true,
+                    maxViewMode: 3,
+                    todayHighlight: true
+                }).val("");
+            });
+        });
+
+    </script>
+}

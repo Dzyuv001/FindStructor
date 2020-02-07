@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FindStructor.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,19 @@ namespace FindStructor.Controllers
         {
             return View();
         }
+
+        public ActionResult AccountSetup() {
+            var model = new Student();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveStudentData(Student model) {
+
+            return Content("Data Saved");
+
+        }
+
     }
 }
