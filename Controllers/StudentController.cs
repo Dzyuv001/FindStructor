@@ -12,7 +12,7 @@ namespace FindStructor.Controllers
 
         private ApplicationDbContext _context;
 
-        public InstructorController()
+        public StudentController()
         {
             _context = new ApplicationDbContext();
         }
@@ -41,7 +41,6 @@ namespace FindStructor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SaveStudentData(Student model) {
-
             if (!ModelState.IsValid) { 
                 return Content("Issue with the data");
             }
@@ -50,7 +49,6 @@ namespace FindStructor.Controllers
             _context.Students.Add(studentDate);
             _context.SaveChanges();
             return Content("Data Saved");
-
         }
 
     }
