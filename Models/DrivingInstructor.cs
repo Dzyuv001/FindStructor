@@ -29,7 +29,6 @@ namespace FindStructor.Models
         public DateTime RegistrationDate { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0", "2000")]
         [DataType(DataType.Currency)]
         public float PricePerLesson { get; set; }
 

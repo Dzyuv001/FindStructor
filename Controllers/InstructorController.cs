@@ -2,6 +2,7 @@
 using FindStructor.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,12 +47,13 @@ namespace FindStructor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaveInstructorData(DrivingInstructor model)
         {
-            if (!ModelState.IsValid)
-            {
-                return Content("Issue with the data");
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Content("Issue with the data");
+            //}
             var instructorData = model;
-            instructorData.IdentityId = GetCurrentUserId();
+            //            System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+
             var instructorInDb = new DrivingInstructor
             {
                 IdentityId = GetCurrentUserId(),
@@ -62,8 +64,32 @@ namespace FindStructor.Controllers
                 GradeId = instructorData.GradeId,
             };
             _context.DrivingInstructors.Add(instructorInDb);
+            System.Diagnostics.Debug.WriteLine("Test");
             _context.SaveChanges();
-            return Content("Data Saved for Driving Instructor");
+            //try
+            //{
+            //}
+            //catch (DbEntityValidationException ex)
+            //{
+            //    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+            //    {
+            //        foreach (var validationError in entityValidationErrors.ValidationErrors)
+            //        {
+
+            //            System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+
+            //            //Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+            //        }
+            //    }
+            //}
+
+            return RedirectToAction("ProfileEdit", "Instructor");
         }
+
+        public ActionResult ProfileEdit()
+        {
+            return View();
+        }
+
     }
 }

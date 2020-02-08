@@ -33,23 +33,31 @@ namespace FindStructor.Controllers
             return View();
         }
 
-        public ActionResult AccountSetup() {
+        public ActionResult AccountSetup()
+        {
             var model = new Student();
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveStudentData(Student model) {
-            if (!ModelState.IsValid) { 
+        public ActionResult SaveStudentData(Student model)
+        {
+            if (!ModelState.IsValid)
+            {
                 return Content("Issue with the data");
             }
             var studentDate = model;
             studentDate.IdentityId = GetCurrentUserId();
             _context.Students.Add(studentDate);
             _context.SaveChanges();
-            return Content("Data Saved");
+            return RedirectToAction("ProfileEdit", "Student");
         }
 
+
+        public ActionResult ProfileEdit()
+        {
+            return View();
+        }
     }
 }

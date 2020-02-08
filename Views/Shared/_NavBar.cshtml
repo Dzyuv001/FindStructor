@@ -3,12 +3,10 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsupportedcontent" aria-controls="navbarsupportedcontent" aria-expanded="false" aria-label="toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @Html.ActionLink("Vidly", "index", "home", new { area = "" }, new { @class = "navbar-brand" })
+        @Html.ActionLink("FindStructor", "index", "home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarsupportedcontent">
             <ul class="nav navbar-nav mr-auto">
-                <li>@Html.ActionLink("New Rental", "New", "Rentals", null, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Movies", "Index", "Movies", null, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Customer", "Index", "Customers", null, new { @class = "nav-link" })</li>
+                @*<li>@Html.ActionLink("LinkName", "Action", "Controller", null, new { @class = "nav-link" })</li>*@
             </ul>
             @Html.Partial("_loginpartial")
         </div>
