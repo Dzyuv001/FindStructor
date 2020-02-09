@@ -15,7 +15,9 @@ namespace FindStructor
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/bootstrap.js",
-                "~/scripts/bootstrap-datepicker.js"
+                "~/scripts/bootstrap-datepicker.js",
+                "~/Scripts/tinymce/tinymce.js",
+                "~/Scripts/fullcalendar.js"
                 ));
 
 
@@ -32,6 +34,7 @@ namespace FindStructor
                       "~/Content/bootstrap.css",
                       "~/content/bootstrap-datetimepicker.css",
                       "~/Content/bootstrap-datepicker3.css",
+                      "~/Content/fullcalendar.css",
                       "~/Content/site.css"));
 
             var nullBulider = new NullBuilder();

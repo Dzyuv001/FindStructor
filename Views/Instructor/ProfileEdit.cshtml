@@ -2,6 +2,168 @@
 @{
     ViewBag.Title = "ProfileEdit";
 }
+<div class="instructor-edit">
+    <h2>Edit your Profile</h2>
 
-<h2>ProfileEdit</h2>
+    <div class="top">
+        <img src="" alt="" class="top__banner" />
+        <div class="top__left">
+            <div class="top__profilePic"></div>
+            <h2 class="top__name"></h2>
+        </div>
+        <div class="top__right">
+            <div class="rateing">
+                <h3>5/5</h3>
+            </div>
+        </div>
+        <div class="instrcutor-data">
+            <div class="instructor-data__left">
+                <div class="instructor-data__containct-info"></div>
+            </div>
+            <div class="instructor-data__right">
+
+
+
+                <nav id="instructor-data__nav" class="navbar navbar-light bg-light">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#AboutMe">About me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Reviews">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Calendar">Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Pricing">Pricing</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div data-spy="scroll" data-target="#instructor-data__nav" data-offset="0">
+                    <div class="section__about-me">
+                        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="editor-tab" data-toggle="tab" href="#editor" role="tab" aria-controls="home" aria-selected="true">Edit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab" aria-controls="profile" aria-selected="false">Preview</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="editor" role="tabpanel" aria-labelledby="home-tab">
+                                <div id="live-preview-form">
+                                    <textarea id="txtEdtDrivingInstructorProfile"></textarea>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="profile-tab">
+                                <div id="lp-message"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="section__rating">
+                        <h4 id="Reviews">Review Section</h4>
+                        <div class="reviews">
+                            <div class="reviews__controlls">
+                                <select class="reviews_rateing form-control">
+                                    <option value="1">All Reviews</option>
+                                    <option value="2">5 Start</option>
+                                    <option value="3">4 Start</option>
+                                    <option value="4">3 Start</option>
+                                    <option value="5">2 Start</option>
+                                    <option value="6">1 Start</option>
+                                </select>
+                                <select class="reviews__order form-control">
+                                    <option value="1">Newest First</option>
+                                    <option value="2">Oldest First</option>
+                                </select>
+                                <div class="reviews__container">
+                                    <div class="review">
+                                        <img src="" alt="" class="review__student-profile-pic" />
+                                        <h5 class="review__student-name"></h5>
+                                        <h3 class="review__title"></h3>
+                                        <p class="review__body"></p>
+                                        <h6 class="review__date"></h6>
+                                    </div>
+                                </div>
+                                <div class="reviews__nav-buttons">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="section__calendar">
+                        <h4 id="Calendar">Calendar</h4>
+                        <div id="calendar"></div>
+                        <hr />
+                    </div>
+                    <div class="section__pricing">
+                        <h4 id="Pricing">Pricing</h4>
+                        <p>...</p>
+                        <hr />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            tinyMCE.init({
+                selector: "#txtEdtDrivingInstructorProfile",
+                plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount tinymcespellchecker a11ychecker imagetools mediaembed  linkchecker contextmenu colorpicker textpattern help',
+                toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                image_advtab: true,
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tinymce.com/css/codepen.min.css'
+                ],
+                setup: function (ed) {
+                    ed.on("keyup", function () {
+                        $('#lp-message').html(tinymce.activeEditor.getContent());
+                    });
+                }
+            });
+
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap4',
+                lang: "en-gb",
+                defaultView: 'agendaWeek',
+                weekNumbers: true,
+                firstDay: 1,
+                axisFormat: 'H(:mm)', //,'h(:mm)tt',
+                timeFormat: {
+                    agenda: 'H(:mm)' //h:mm{ - h:mm}'
+                },
+                views: {
+                    week: { columnFormat: 'ddd DD/MM' }
+                },
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                }
+            })
+
+        });
+    </script>
+
+}
 
