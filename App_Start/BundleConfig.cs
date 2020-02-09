@@ -17,9 +17,10 @@ namespace FindStructor
                 "~/Scripts/bootstrap.js",
                 "~/scripts/bootstrap-datepicker.js",
                 "~/Scripts/tinymce/tinymce.js",
+                "~/Scripts/moment.js",
+                "~/Scripts/Sortable.min.js",
                 "~/Scripts/fullcalendar.js"
                 ));
-
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

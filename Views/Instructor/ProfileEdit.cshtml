@@ -109,7 +109,10 @@
                     </div>
                     <div class="section__pricing">
                         <h4 id="Pricing">Pricing</h4>
-                        <p>...</p>
+                        <div id="pricingTable" class="list-group col">
+                            <div class="list-group-item"><i class="fas fa-arrows-alt handle"></i>&nbsp;&nbsp;Item 1</div>
+                            
+                        </div>
                         <hr />
                     </div>
                 </div>
@@ -125,6 +128,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
+
+
+            new Sortable(pricingTable, {
+                handle: '.handle',
+                animation: 150
+            });
 
             tinyMCE.init({
                 selector: "#txtEdtDrivingInstructorProfile",
