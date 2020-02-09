@@ -220,6 +220,7 @@
     <Compile Include="Models\DrivingInstructor.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LessonData.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UserTypes.cs" />

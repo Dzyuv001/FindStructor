@@ -63,7 +63,7 @@
                     </div>
                     <hr />
                     <div class="section__rating">
-                        <h4 id="Reviews">Review Section</h4>
+                        <h2 id="Reviews">Review Section</h2>
                         <div class="reviews">
                             <div class="reviews__controlls">
                                 <select class="reviews_rateing form-control">
@@ -103,16 +103,61 @@
                         <hr />
                     </div>
                     <div class="section__calendar">
-                        <h4 id="Calendar">Calendar</h4>
+                        <h2 id="Calendar">Calendar</h2>
                         <div id="calendar"></div>
                         <hr />
                     </div>
+
                     <div class="section__pricing">
-                        <h4 id="Pricing">Pricing</h4>
-                        <div id="pricingTable" class="list-group col">
-                            <div class="list-group-item"><i class="fas fa-arrows-alt handle"></i>&nbsp;&nbsp;Item 1</div>
-                            
+                        <h2 id="Pricing">Pricing</h2>
+                        <h3>Base Price</h3>
+                        <button id="btnAddOffer" class="btn btn-outline-primary">+ Add Offer</button>
+                        <button class="btn btn-outline-primary"><i class="fas fa-arrow-circle-up"></i> Update OffersList</button>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="txtPrice">Price:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">£</span>
+                                    </div>
+                                    <input id="txtPrice" class="form-control" type="number" min="0.01" max="9999" step="0.01" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="txtLessonLength">Lesson Length (in minutes)</label>
+                                <input id="txtLessonLength" class="form-control" type="number" min="0.1" max="24" step="0.1" />
+                            </div>
                         </div>
+                        <h3>Offers List</h3>
+                        <ol id="pricingTable" class="list-group col">
+                            <li class="list-group-item">
+                                <i class="fas fa-arrows-alt handle"></i>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Lesson title:</label>
+                                        <input class="form-control" placeholder="Lesson title" type="text" required />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Price:</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">£</span>
+                                            </div>
+                                            <input class="form-control" type="number" placeholder="26.99" min="0.01" max="9999" step="0.01" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Number of lessons:</label>
+                                        <input class="form-control" type="number" placeholder="1" min="1" max="100" step="1" required />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Lesson length (in minutes):</label>
+                                        <input class="form-control" type="number" placeholder="60" min="1" max="600" step="1" required />
+                                    </div>
+                                </div>
+                                <button class="btn btn-danger btnDelete"><i class="fas fa-trash"></i> Delete</button>
+                            </li>
+                        </ol>
                         <hr />
                     </div>
                 </div>
@@ -129,6 +174,45 @@
     <script>
         $(document).ready(function () {
 
+            $("#btnAddOffer").on("click", function () {
+                var htmlMarkup = '' +
+                    '<li class="list-group-item" >' +
+                    '<i class="fas fa-arrows-alt handle"></i>' +
+                    ' <div class="row">' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Lesson title:</label>' +
+                    '<input class="form-control" placeholder="Lesson title" type="text" required />' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Price:</label>' +
+                    '<div class="input-group mb-3">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text">£</span>' +
+                    '</div>' +
+                    '<input class="form-control" type="number" placeholder="26.99" min="0.01" max="9999" step="0.01" />' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Number of lessons:</label>' +
+                    '<input class="form-control" type="number" placeholder="1" min="1" max="100" step="1" required />' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Lesson length (in minutes):</label>' +
+                    '<input class="form-control" type="number" placeholder="60" min="1" max="600" step="1" required />' +
+                    '</div>' +
+                    '</div>' +
+                    '<button class="btn btn-danger btnDelete"><i class="fas fa-trash"></i> Delete</button>' +
+                    '</li>';
+                $(htmlMarkup).hide().appendTo("#pricingTable").fadeIn(300);
+                //$("#pricingTable").append(htmlMarkup);
+            });
+
+            $("#pricingTable").on("click", ".btnDelete", function () {
+                var listElement = $(this).parent();
+                listElement.fadeOut(200, function () {
+                    listElement.remove();
+                })
+            });
 
             new Sortable(pricingTable, {
                 handle: '.handle',
