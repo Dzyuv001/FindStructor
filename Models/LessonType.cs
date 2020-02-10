@@ -11,6 +11,8 @@ namespace FindStructor.Models
         public long Id { get; set; }
         public bool IsBasePrice { get; set; }
 
+        public short DisplayIndex { get; set; }
+
         //used to check if the value should be displayed 
         public bool IsUnlisted { get; set; }
 

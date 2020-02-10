@@ -1,0 +1,23 @@
+﻿.instructor-data {
+    &__left {
+        background: purple;
+        position: relative;
+    }
+
+    &__right {
+        background: cyan;
+    }
+
+    &__containct-info {
+        background: yellow;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20vh;
+        height: 10rem;
+        margin: 5rem 1rem;
+    }
+
+    &__social-container {
+
+    }
+}
