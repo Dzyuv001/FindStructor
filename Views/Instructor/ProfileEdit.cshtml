@@ -112,7 +112,7 @@
                         <h2 id="Pricing">Pricing</h2>
                         <h3>Base Price</h3>
                         <button id="btnAddOffer" class="btn btn-outline-primary">+ Add Offer</button>
-                        <button class="btn btn-outline-primary"><i class="fas fa-arrow-circle-up"></i> Update OffersList</button>
+                        <button id="btnUploadOffers" class="btn btn-outline-primary"><i class="fas fa-arrow-circle-up"></i> Update OffersList</button>
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="txtPrice">Price:</label>
@@ -155,7 +155,10 @@
                                         <input class="form-control" type="number" placeholder="60" min="1" max="600" step="1" required />
                                     </div>
                                 </div>
+                                <button class="btn btn-primary btnSave"><i class="far fa-save"></i> Save</button>
+
                                 <button class="btn btn-danger btnDelete"><i class="fas fa-trash"></i> Delete</button>
+                                <button class="btn btn-info btnUpdate"><i class="fas fa-pen"></i> Update</button>
                             </li>
                         </ol>
                         <hr />
@@ -212,6 +215,12 @@
                 listElement.fadeOut(200, function () {
                     listElement.remove();
                 })
+            });
+
+
+            $("#btnUploadOffers").on("click", function (e) {
+                e.preventDefault();
+
             });
 
             new Sortable(pricingTable, {

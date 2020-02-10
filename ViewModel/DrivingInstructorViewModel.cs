@@ -28,7 +28,7 @@ namespace FindStructor.ViewModel
         public DateTime RegistrationDate { get; set; }
 
         [Required]
-        [Display(Name = "Price per Lesson")]
+        [Display(Name = "Price per LessonType")]
         [DataType(DataType.Currency)]
         public float PricePerLesson { get; set; }
 
