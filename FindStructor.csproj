@@ -302,8 +302,10 @@
     <Content Include="Content\bootstrap-datepicker3.css.map" />
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
-    <Content Include="Content\SCSS\Layout\ProfilePrimary.scss" />
-    <Content Include="Content\SCSS\Layout\InstructorData.scss" />
+    <Content Include="Content\SCSS\Layout\_profilePrimary.scss" />
+    <Content Include="Content\SCSS\Layout\_instructorData.scss" />
+    <Content Include="Content\SCSS\Components\_fileUploader.scss" />
+    <Content Include="Content\SCSS\Layout\_accountSetup.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -747,7 +749,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\SCSS\Components\" />
     <Folder Include="Content\SCSS\Page\" />
     <Folder Include="Dto\" />
   </ItemGroup>

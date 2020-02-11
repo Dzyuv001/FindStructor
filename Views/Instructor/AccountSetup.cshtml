@@ -4,53 +4,101 @@
 }
 
 <h2>Driving Instructor Account Setup</h2>
-
-
-
-@using (Html.BeginForm("SaveInstructorData", "Instructor", FormMethod.Post, new { id = "DrivingInstructorRegistration" }))
-{
-    @Html.ValidationSummary(true, "Fix the following error")
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.FirstName)
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.FirstName)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.LastName)
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LastName)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.RegistrationDate)
-            @Html.TextBoxFor(m => m.RegistrationDate, "{0:dd/mm/yyyy}", new { @class = "form-control datepicker", id = "txtRegistrationDate", placeholder = "dd/mm/yyyy" })
-            @Html.ValidationMessageFor(m => m.RegistrationDate)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.PricePerLesson)
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">£</span>
+<div class="account-setup">
+    <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link active" id="ProfileInfo-tab" data-toggle="pill" href="#ProfileInfo" role="tab" aria-controls="pills-ProfileInfo" aria-selected="true">1 Profile</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="AboutMe-tab" data-toggle="pill" href="#AboutMe" role="tab" aria-controls="pills-AboutMe" aria-selected="false">2 About Me</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="ContactInfo-tab" data-toggle="pill" href="#ContactInfo" role="tab" aria-controls="pills-ContactInfo" aria-selected="false">3 Contact Info</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="AreaWorked-tab" data-toggle="pill" href="#AreaWorked" role="tab" aria-controls="pills-AreaWorked" aria-selected="false">4 Area Worked</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="LessonPrice-tab" data-toggle="pill" href="#LessonPrice" role="tab" aria-controls="pills-LessonPrice" aria-selected="false">5 Lesson Prices</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="LessonSlot-tab" data-toggle="pill" href="#LessonSlots" role="tab" aria-controls="pills-LessonSlot" aria-selected="false">6 Lesson Slots</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="ProfileInfo" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="row">
+                <div class="col-md-3 align-self-center">
+                    <form id="ProfilePicUploader" class="file-uploader">
+                        <div class="file-uploader__ui">
+                            <i class="fas fa-upload file-uploader__icon"></i>
+                            <input class="file-uploader__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                            <label for="file"><strong>Add Profile Picture</strong><span class="file-uploader__dragndrop"> or drag it here</span>.</label>
+                            <button class="file-uploader__btn btn btn-outline-primary" type="submit">Upload</button>
+                        </div>
+                        <div class="file-uploader__uploading">Uploading</div>
+                        <div class="file-uploader__success">Done!</div>
+                        <div class="file-uploader__error">Error! <span></span>.</div>
+                    </form>
                 </div>
-                @Html.TextBoxFor(m => m.PricePerLesson, new { @class = "form-control", type = "number", min = "0.01", max = "9999", step = "0.01" })
+                <div class="col-md-9 align-self-center">
+                    <form id="ProfileInfoForm">
+                        <div class="row">
+                            <div class="from-group account-setup__input-group col-md-6">
+                                <label for="txtFirstName">First Name</label>
+                                <input class="form-control" id="txtFirstName" type="text" name="txtFirstName" placeholder="First name" />
+                            </div>
+                            <div class="from-group account-setup__input-group col-md-6">
+                                <label for="txtLastName">Last Name</label>
+                                <input class="form-control" id="txtLastName" type="text" name="txtLastName" placeholder="Last name" />
+                            </div>
+                            <div class="from-group account-setup__input-group col-md-6">
+                                <label for="txtLastName">Date Qualified</label>
+                                <input class="form-control datepicker" id="txtDateQuilified" type="text" name="txtDateQuilified" placeholder="dd/mm/yyyy" />
+                            </div>
+                            <div class="from-group account-setup__input-group col-md-6">
+                                <label for="drpdwnGrade">Driving Instructor Grade</label>
+                                <select class="form-control" id="drpdwnGrade" name="drpdwnGrade">
+                                    <option val="1">Select Grade</option>
+                                    <option val="1">A</option>
+                                    <option val="2">B</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            @Html.ValidationMessageFor(m => m.PricePerLesson)
-        </div>
-        <div class="form-group col-md-6">
-            @Html.LabelFor(m => m.GradeId)
-            @Html.DropDownListFor(m => m.GradeId, new SelectList(Model.Grades, "Id", "Name"), "Select Grade", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.GradeId)
-        </div>
+            <button id="btnNext_1" form="ProfileInfoForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
 
-        @*@Html.HiddenFor(m => m.Id)*@
-        @Html.AntiForgeryToken()
+        </div>
+        <div class="tab-pane fade" id="AboutMe" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+        </div>
+        <div class="tab-pane fade" id="AboutMe" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+        </div>
+        <div class="tab-pane fade" id="AreaWorked" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+        </div>
+        <div class="tab-pane fade" id="LessonPrice" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+        </div>
+        <div class="tab-pane fade" id="LessonSlots" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+        </div>
     </div>
-    <button id="submitDrivingInstructor" type="submit" class="btn btn-primary">Save</button>
-}
+</div>
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        var navPillsArray = document.querySelectorAll(".account-setup__nav .nav-link");
+        $(".account-setup__btn-next").on("click", function (e) {
+            e.preventDefault();
+            var indexOfTab = e.target.id.split("_")[1];
+            navPillsArray[indexOfTab].classList.remove("disabled");
+        });
+
 
         $(document).ready(function () {
             $(function () {

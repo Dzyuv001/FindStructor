@@ -5,5 +5,7 @@
 @import "Base/_base.scss";
 @import "Base/_typography.scss";
 @import "Base/_utilities.scss";
-@import "Layout/ProfilePrimary.scss";
-@import "Layout/InstructorData.scss";
+@import "Layout/_profilePrimary.scss";
+@import "Layout/_instructorData.scss";
+@import "Layout/_accountSetup.scss";
+@import "Components/_fileUploader.scss";
