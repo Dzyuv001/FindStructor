@@ -7,29 +7,61 @@
 <div class="account-setup">
     <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
         <li class="nav-item account-setup__nav">
-            <a class="nav-link active" id="ProfileInfo-tab" data-toggle="pill" href="#ProfileInfo" role="tab" aria-controls="pills-ProfileInfo" aria-selected="true">1 Profile</a>
+            <a class="nav-link active" id="PrimaryInfo-tab" data-toggle="pill" href="#PrimaryInfo" role="tab" aria-controls="pills-PrimaryInfo" aria-selected="true">1 Profile Info</a>
         </li>
         <li class="nav-item account-setup__nav">
-            <a class="nav-link disabled" id="AboutMe-tab" data-toggle="pill" href="#AboutMe" role="tab" aria-controls="pills-AboutMe" aria-selected="false">2 About Me</a>
+            <a class="nav-link disabled" id="ProfilePicture-tab" data-toggle="pill" href="#ProfilePicture" role="tab" aria-controls="pills-ProfilePicture" aria-selected="false">2 Profile Picture</a>
         </li>
         <li class="nav-item account-setup__nav">
-            <a class="nav-link disabled" id="ContactInfo-tab" data-toggle="pill" href="#ContactInfo" role="tab" aria-controls="pills-ContactInfo" aria-selected="false">3 Contact Info</a>
+            <a class="nav-link disabled" id="AboutMe-tab" data-toggle="pill" href="#AboutMe" role="tab" aria-controls="pills-AboutMe" aria-selected="false">3 About Me</a>
         </li>
         <li class="nav-item account-setup__nav">
-            <a class="nav-link disabled" id="AreaWorked-tab" data-toggle="pill" href="#AreaWorked" role="tab" aria-controls="pills-AreaWorked" aria-selected="false">4 Area Worked</a>
+            <a class="nav-link disabled" id="ContactInfo-tab" data-toggle="pill" href="#ContactInfo" role="tab" aria-controls="pills-ContactInfo" aria-selected="false">4 Contact Info</a>
         </li>
         <li class="nav-item account-setup__nav">
-            <a class="nav-link disabled" id="LessonPrice-tab" data-toggle="pill" href="#LessonPrice" role="tab" aria-controls="pills-LessonPrice" aria-selected="false">5 Lesson Prices</a>
+            <a class="nav-link disabled" id="AreaWorked-tab" data-toggle="pill" href="#AreaWorked" role="tab" aria-controls="pills-AreaWorked" aria-selected="false">5 Area Worked</a>
         </li>
         <li class="nav-item account-setup__nav">
-            <a class="nav-link disabled" id="LessonSlot-tab" data-toggle="pill" href="#LessonSlots" role="tab" aria-controls="pills-LessonSlot" aria-selected="false">6 Lesson Slots</a>
+            <a class="nav-link disabled" id="LessonPrice-tab" data-toggle="pill" href="#LessonPrice" role="tab" aria-controls="pills-LessonPrice" aria-selected="false">6 Lesson Prices</a>
+        </li>
+        <li class="nav-item account-setup__nav">
+            <a class="nav-link disabled" id="LessonSlot-tab" data-toggle="pill" href="#LessonSlots" role="tab" aria-controls="pills-LessonSlot" aria-selected="false">7 Lesson Slots</a>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="ProfileInfo" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="tab-pane fade show active" id="PrimaryInfo" role="tabpanel" aria-labelledby="pills-home-tab">
+            <form id="PrimaryInfoForm">
+                <div class="row">
+                    <div class="from-group account-setup__input-group col-md-6">
+                        <label for="txtFirstName">First Name</label>
+                        <input class="form-control" id="txtFirstName" type="text" name="txtFirstName" placeholder="First name" />
+                    </div>
+                    <div class="from-group account-setup__input-group col-md-6">
+                        <label for="txtLastName">Last Name</label>
+                        <input class="form-control" id="txtLastName" type="text" name="txtLastName" placeholder="Last name" />
+                    </div>
+                    <div class="from-group account-setup__input-group col-md-6">
+                        <label for="txtLastName">Date Qualified</label>
+                        <input class="form-control datepicker" id="txtDateQuilified" type="text" name="txtDateQuilified" placeholder="dd/mm/yyyy" />
+                    </div>
+                    <div class="from-group account-setup__input-group col-md-6">
+                        <label for="drpdwnGrade">Driving Instructor Grade</label>
+                        <select class="form-control" id="drpdwnGrade" name="drpdwnGrade">
+                            <option val="1">Select Grade</option>
+                            <option val="1">A</option>
+                            <option val="2">B</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <button id="btnNext_1" form="PrimaryInfoForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
+        </div>
+
+        <div class="tab-pane fade" id="ProfilePicture" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div class="row">
-                <div class="col-md-3 align-self-center">
-                    <form id="ProfilePicUploader" class="file-uploader">
+
+                <div class="col-md-4 align-self-center">
+                    <form id="ProfilePictureForm" class="file-uploader">
                         <div class="file-uploader__ui">
                             <i class="fas fa-upload file-uploader__icon"></i>
                             <input class="file-uploader__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
@@ -41,35 +73,12 @@
                         <div class="file-uploader__error">Error! <span></span>.</div>
                     </form>
                 </div>
-                <div class="col-md-9 align-self-center">
-                    <form id="ProfileInfoForm">
-                        <div class="row">
-                            <div class="from-group account-setup__input-group col-md-6">
-                                <label for="txtFirstName">First Name</label>
-                                <input class="form-control" id="txtFirstName" type="text" name="txtFirstName" placeholder="First name" />
-                            </div>
-                            <div class="from-group account-setup__input-group col-md-6">
-                                <label for="txtLastName">Last Name</label>
-                                <input class="form-control" id="txtLastName" type="text" name="txtLastName" placeholder="Last name" />
-                            </div>
-                            <div class="from-group account-setup__input-group col-md-6">
-                                <label for="txtLastName">Date Qualified</label>
-                                <input class="form-control datepicker" id="txtDateQuilified" type="text" name="txtDateQuilified" placeholder="dd/mm/yyyy" />
-                            </div>
-                            <div class="from-group account-setup__input-group col-md-6">
-                                <label for="drpdwnGrade">Driving Instructor Grade</label>
-                                <select class="form-control" id="drpdwnGrade" name="drpdwnGrade">
-                                    <option val="1">Select Grade</option>
-                                    <option val="1">A</option>
-                                    <option val="2">B</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
+                <div class="col-md-8 align-self-center">
+                    <p> It is not essential but adding a pretty picture to make you more recognizable</p>
                 </div>
+                
+                <button id="btnNext_2" form="ProfilePictureForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
             </div>
-            <button id="btnNext_1" form="ProfileInfoForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
-
         </div>
 
         <div class="tab-pane fade" id="AboutMe" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -94,19 +103,32 @@
                     </div>
                 </div>
             </div>
-            <button id="btnNext_2" form="AboutMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
+            <button id="btnNext_3" form="AboutMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
 
         </div>
 
-        <div class="tab-pane fade" id="ContactInfo" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <form id="ContactMeForm">  </form>
 
-            <button id="btnNext_3" form="ContactMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
+
+        <div class="tab-pane fade" id="ContactInfo" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <form id="ContactMeForm">
+                <p>Select</p>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chkPhoneNumber">
+                    <label class="custom-control-label" for="customCheck1">Phone Number</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="chkPhoneNumber">
+                    <label class="custom-control-label" for="customCheck1">Phone Number</label>
+                </div>
+
+            </form>
+
+            <button id="btnNext_4" form="ContactMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
 
         <div class="tab-pane fade" id="AreaWorked" role="tabpanel" aria-labelledby="pills-contact-tab">
             <form id="AreasWorkedForm"></form>
-            <button id="btnNext_4" form="AreasWorkedForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
+            <button id="btnNext_5" form="AreasWorkedForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
         <div class="tab-pane fade" id="LessonPrice" role="tabpanel" aria-labelledby="pills-contact-tab">
             <form id="LessonPricesForm">
@@ -159,10 +181,11 @@
                     </li>
                 </ol>
             </form>
-            <button id="btnNext_5" form="LessonPricesForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
+            <button id="btnNext_6" form="LessonPricesForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
         <div class="tab-pane fade" id="LessonSlots" role="tabpanel" aria-labelledby="pills-contact-tab">
-
+            <form id="LessonSlotsForm"></form>
+            <button id="btnNext_7" form="LessonSlotsForm" class="account-setup__btn-finish btn btn-primary btn-lg"> Finish</button>
         </div>
     </div>
 </div>
