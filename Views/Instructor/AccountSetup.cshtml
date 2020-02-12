@@ -71,17 +71,95 @@
             <button id="btnNext_1" form="ProfileInfoForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
 
         </div>
+
         <div class="tab-pane fade" id="AboutMe" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="section__about-me">
+                <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="editor-tab" data-toggle="tab" href="#editor" role="tab" aria-controls="home" aria-selected="true">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="preview-tab" data-toggle="tab" href="#preview" role="tab" aria-controls="profile" aria-selected="false">Preview</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <form id="AboutMeForm"></form>
+                    <div class="tab-pane fade show active" id="editor" role="tabpanel" aria-labelledby="home-tab">
+                        <div id="live-preview-form">
+                            <textarea id="txtEdtDrivingInstructorProfile"></textarea>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="preview" role="tabpanel" aria-labelledby="profile-tab">
+                        <div id="lp-message"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="btnNext_2" form="AboutMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
 
         </div>
-        <div class="tab-pane fade" id="AboutMe" role="tabpanel" aria-labelledby="pills-profile-tab">
 
+        <div class="tab-pane fade" id="ContactInfo" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <form id="ContactMeForm">  </form>
+
+            <button id="btnNext_3" form="ContactMeForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
+
         <div class="tab-pane fade" id="AreaWorked" role="tabpanel" aria-labelledby="pills-contact-tab">
-
+            <form id="AreasWorkedForm"></form>
+            <button id="btnNext_4" form="AreasWorkedForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
         <div class="tab-pane fade" id="LessonPrice" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <form id="LessonPricesForm">
+                <h3>Base Price</h3>
+                <button id="btnAddOffer" class="btn btn-outline-primary">+ Add Offer</button>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="txtPrice">Price:</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">£</span>
+                            </div>
+                            <input id="txtPrice" class="form-control" type="number" min="0.01" max="9999" step="0.01" />
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="txtLessonLength">Lesson Length (in minutes)</label>
+                        <input id="txtLessonLength" class="form-control" type="number" min="0.1" max="24" step="0.1" />
+                    </div>
+                </div>
+                <h3>Offers List</h3>
+                <ol id="pricingTable" class="list-group col">
+                    <li class="list-group-item">
+                        <i class="fas fa-arrows-alt handle"></i>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Lesson title:</label>
+                                <input class="form-control" placeholder="Lesson title" type="text" required />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Price:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">£</span>
+                                    </div>
+                                    <input class="form-control" type="number" placeholder="26.99" min="0.01" max="9999" step="0.01" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Number of lessons:</label>
+                                <input class="form-control" type="number" placeholder="1" min="1" max="100" step="1" required />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Lesson length (in minutes):</label>
+                                <input class="form-control" type="number" placeholder="60" min="1" max="600" step="1" required />
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btnDelete"><i class="fas fa-trash"></i>Remove</button>
 
+                    </li>
+                </ol>
+            </form>
+            <button id="btnNext_5" form="LessonPricesForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
         <div class="tab-pane fade" id="LessonSlots" role="tabpanel" aria-labelledby="pills-contact-tab">
 
@@ -92,15 +170,9 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        var navPillsArray = document.querySelectorAll(".account-setup__nav .nav-link");
-        $(".account-setup__btn-next").on("click", function (e) {
-            e.preventDefault();
-            var indexOfTab = e.target.id.split("_")[1];
-            navPillsArray[indexOfTab].classList.remove("disabled");
-        });
-
-
         $(document).ready(function () {
+
+
             $(function () {
                 $.validator.methods.date = function (value, element) {
                     return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
@@ -114,6 +186,100 @@
                     todayHighlight: true
                 }).val("");
             });
+
+            var navPillsArray = document.querySelectorAll(".account-setup__nav .nav-link");
+
+            function navToTap(i) {// i = index of tab
+                var currentTab = document.querySelector(navPillsArray[i - 1].getAttribute("href"));
+                var nextTab = document.querySelector(navPillsArray[i].getAttribute("href"));
+
+                console.log(currentTab);
+                currentTab.classList.remove("active");
+                currentTab.classList.remove("show");
+
+                nextTab.classList.add("active");
+                nextTab.classList.add("show");
+
+                navPillsArray[i - 1].classList.remove("active")
+                navPillsArray[i].classList.add("active")
+                navPillsArray[i - 1].setAttribute("aria-selected", false);
+                navPillsArray[i].setAttribute("aria-selected", true);
+            }
+
+            $(".account-setup__btn-next").on("click", function (e) {
+                e.preventDefault();
+                var indexOfTab = e.target.id.split("_")[1] - 0;
+                navPillsArray[indexOfTab].classList.remove("disabled");
+                navToTap(indexOfTab);
+            });
+
+            tinyMCE.init({
+                selector: "#txtEdtDrivingInstructorProfile",
+                plugins: 'print preview fullpage powerpaste searchreplace autolink directionality advcode visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount tinymcespellchecker a11ychecker imagetools mediaembed  linkchecker contextmenu colorpicker textpattern help',
+                toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+                image_advtab: true,
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tinymce.com/css/codepen.min.css'
+                ],
+                setup: function (ed) {
+                    ed.on("keyup", function () {
+                        $('#lp-message').html(tinymce.activeEditor.getContent());
+                    });
+                }
+            });
+
+
+            $("#btnAddOffer").on("click", function () {
+                var htmlMarkup = '' +
+                    '<li class="list-group-item" >' +
+                    '<i class="fas fa-arrows-alt handle"></i>' +
+                    ' <div class="row">' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Lesson title:</label>' +
+                    '<input class="form-control" placeholder="Lesson title" type="text" required />' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Price:</label>' +
+                    '<div class="input-group mb-3">' +
+                    '<div class="input-group-prepend">' +
+                    '<span class="input-group-text">£</span>' +
+                    '</div>' +
+                    '<input class="form-control" type="number" placeholder="26.99" min="0.01" max="9999" step="0.01" />' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Number of lessons:</label>' +
+                    '<input class="form-control" type="number" placeholder="1" min="1" max="100" step="1" required />' +
+                    '</div>' +
+                    '<div class="form-group col-md-6">' +
+                    '<label>Lesson length (in minutes):</label>' +
+                    '<input class="form-control" type="number" placeholder="60" min="1" max="600" step="1" required />' +
+                    '</div>' +
+                    '</div>' +
+                    '<button class="btn btn-danger btnDelete"><i class="fas fa-trash"></i> Delete</button>' +
+                    '</li>';
+                $(htmlMarkup).hide().appendTo("#pricingTable").fadeIn(300);
+            });
+
+            $("#pricingTable").on("click", ".btnDelete", function () {
+                var listElement = $(this).parent();
+                listElement.fadeOut(200, function () {
+                    listElement.remove();
+                })
+            });
+
+
+            $("#btnUploadOffers").on("click", function (e) {
+                e.preventDefault();
+
+            });
+
+            new Sortable(pricingTable, {
+                handle: '.handle',
+                animation: 150
+            });
+
         });
 
     </script>
