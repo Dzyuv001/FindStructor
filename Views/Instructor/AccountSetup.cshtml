@@ -209,9 +209,48 @@
 
         <div class="tab-pane fade" id="AreaWorked" role="tabpanel" aria-labelledby="pills-contact-tab">
             <form id="AreasWorkedForm">
-                <div class="input-group">
-                    <label for="txtCityOrTown">City or Town</label>
-                    <input class="form-control" id="txtCityOrTown" type="text" name="txtCityOrTown" placeholder="Name of City or Town" />
+                <div class="row area-worked">
+                    <div class="col-md-6">
+                        <div class="from-group">
+                            <label for="txtCityOrTown">City or Town</label>
+                            <input class="form-control" id="txtCityOrTown" type="text" name="txtCityOrTown" placeholder="Name of City or Town" />
+                        </div>
+                        <div class="area-worked__tag-area">
+                            <div class="tag area-worked__tag-location">
+                                NameOfCity<span class="tag-btn">X</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Filter selected city by post code Area</p>
+                        <div class="area-worked__tag-area">
+                            <div class="tag area-worked__tag">
+                                SZ2
+                                <span class="tag-btn-post-add">X</span>
+                            </div>
+                            <div class="tag area-worked__tag">
+                                SZ2
+                                <span class="tag-btn-post-add">X</span>
+                            </div>
+                            <div class="tag area-worked__tag">
+                                SZ2
+                                <span class="tag-btn-post-add">X</span>
+                            </div>
+                            <div class="tag area-worked__tag">
+                                SZ2
+                                <span class="tag-btn-post-add">X</span>
+                            </div>
+                            <div class="tag area-worked__tag">
+                                SZ2
+                                <span class="tag-btn-post-add">X</span>
+                            </div>
+                        </div>
+                        <div class="area-worked__tag-area">
+                            <div class="tag area-worked__tag">
+                                SZ1<span class="tag-btn-post-remove">X</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
             <button id="btnNext_5" form="AreasWorkedForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
