@@ -309,7 +309,9 @@
             <button id="btnNext_6" form="LessonPricesForm" class="account-setup__btn-next btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Next</button>
         </div>
         <div class="tab-pane fade" id="LessonSlots" role="tabpanel" aria-labelledby="pills-contact-tab">
-            <form id="LessonSlotsForm"></form>
+            <form id="LessonSlotsForm">
+                <div id="calendar"></div>
+            </form>
             <button id="btnNext_7" form="LessonSlotsForm" class="account-setup__btn-finish btn btn-primary btn-lg"> Finish</button>
         </div>
     </div>
@@ -443,6 +445,23 @@
                 animation: 150
             });
 
+            $('#calendar').fullCalendar({
+                themeSystem: 'bootstrap4',
+                lang: "en-gb",
+                defaultView: 'agendaWeek',
+                weekNumbers: true,
+                firstDay: 1,
+                axisFormat: 'H(:mm)', //,'h(:mm)tt',
+                timeFormat: {
+                    agenda: 'H(:mm)' //h:mm{ - h:mm}'
+                },
+                views: {
+                    week: { columnFormat: 'ddd DD/MM' }
+                },
+                header: {
+                    center: 'title'
+                }
+            })
         });
     </script>
 }
